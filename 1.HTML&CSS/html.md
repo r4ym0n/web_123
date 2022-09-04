@@ -1,3 +1,4 @@
+## HTML
 
 - block 块级元素
 - inline 内联元素
@@ -28,3 +29,48 @@
 
 <div> 是一个块级无语义元素，应仅用于找不到更好的块级元素时，或者不想增加特定的意义时。例如，一个电子商务网站页面上有一个一直显示的购物车组件。
 
+
+
+## CSS
+- a {} // element
+- .code {} // class
+- a.code {} // 元素class
+- li em {} // 元素包含
+- h1 + p {} // 相邻包含
+- a:link {} // 元素状态
+- a:visited {}
+- a:hover {}
+
+
+
+### @规则
+
+媒体查询
+```
+
+body {
+  background-color: pink;
+}
+
+@media (min-width: 30em) {
+  body {
+    background-color: blue;
+  }
+}
+
+
+```
+
+速记属性 TRBL
+
+
+```
+background: red url(bg-graphic.png) 10px 10px repeat-x fixed;
+
+background-color: red;
+background-image: url(bg-graphic.png);
+background-position: 10px 10px;
+background-repeat: repeat-x;
+background-attachment: fixed;
+
+```

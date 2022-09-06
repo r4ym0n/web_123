@@ -1,3 +1,7 @@
+// extracted from 
+
+
+
 
 /**
  * Parse RTTTL
@@ -210,9 +214,8 @@ function _calculateDuration(beatEvery, noteDuration, isDotted) {
 var shouldStop = false;
 
 function play(rtttl) {
-
   try {
-    var parsedRtttl = rtttlParse.parse(rtttl);
+    var parsedRtttl = parse(rtttl);
     var audioCtx = new (AudioContext || webkitAudioContext)();
     _playMelody(parsedRtttl.melody, audioCtx);
   } catch (err) {

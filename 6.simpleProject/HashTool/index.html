@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script type="text/javascript" src="crypto-js.js"></script>
+
+    <style>
+      body {
+        margin: 0px;
+        background-color: #f5f5f5;
+        padding: 0px 80px 0px 80px;
+      }
+
+      h1 {
+        font-weight: 100;
+        font-size: 2.5rem;
+        margin-top: 20px;
+        margin-bottom: 0px;
+      }
+
+      .title {
+        text-align: center;
+        padding: 0px 20px 0px 20px;
+        border-bottom: 1px solid #eee;
+
+        margin-bottom: 10px;
+      }
+
+      .content {
+        border: 0px solid #e3e3e3;
+        padding: 0px;
+        width: 100%;
+        font-size: x-large;
+        height: 5rem;
+        margin: 0 auto;
+        overflow: auto;
+      }
+
+      .wp-content {
+        border: 1px solid #e3e3e3;
+        border-radius: 10px;
+        padding: 16px;
+        margin-bottom: 10px;
+      }
+      label[name="name"] {
+        width: 65px;
+        display: inline-block;
+        text-align: left;
+      }
+      .hash-content {
+        margin-top: 5px;
+        width: 60rem;
+      }
+
+      .info-box {
+        position: absolute;
+        width: 150px;
+        height: 60px;
+        padding: 0px 20px 0px 20px;
+        border-left: 5px solid gray;
+        border-radius: 5px;
+        background-color: wheat;
+        margin-left: 20px;
+        margin-right: 20px;
+        opacity: 0.7;
+      }
+
+      .info-box-text {
+        margin: 5px;
+        display: block;
+        text-align: center;
+        font-size: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="title">
+      <h1>
+        <i class="fa-solid fa-music"></i>
+        🔒🔑 Hash and Encode
+      </h1>
+    </header>
+
+    <article>
+      <div class="">
+        <div class="wp-content">
+          <textarea
+            class="content"
+            id="textOrigin"
+            placeholder="content to hash or Encode"
+          ></textarea>
+        </div>
+      </div>
+      <div class="wp-output">
+        <ul id="hash-list" class="hash-list"></ul>
+      </div>
+    </article>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row"></div>
+      </div>
+    </footer>
+
+    <div class="info-box" id="info-box" style="visibility: hidden">
+      <p class="info-box-text" id="info-box-text"></p>
+    </div>
+    <script type="text/javascript">
+      window.onload = function () {
+        //根据配置渲染HashList
+        const outputList = document.querySelector("#hash-list");
+        const outputContent = new DocumentFragment();
+        HashConfigList.forEach(function (config) {
+          const li = document.createElement("li");
+          li.innerHTML = `<span>
+                <label name="name">${config.name}</label>
+                <label name="copy">📋</label>
+                <input
+                title="Click to copy"
+                type="text"
+                name="${config.name}"
+                data-name=${config.name}
+                class="hash-content"
+                placeholder="N/A"
+                disabled
+                />
+                </span>`;
+          outputContent.appendChild(li);
+        });
+        outputList.appendChild(outputContent);
+
+        // 输入刷新hash事件
+        const textOrigin = document.querySelector("#textOrigin");
+        const hashList = document.querySelector("#hash-list");
+        textOrigin.addEventListener("input", function (e) {
+          [...hashList.children].forEach(function (hashli) {
+            let input = hashli.firstElementChild.lastElementChild;
+            let algo = findAlgoByName(input.dataset.name);
+            input.value = algo(textOrigin.value).toString(CryptoJS.enc.Hex);
+          });
+        });
+
+        // 点击复制
+        outputList.addEventListener("click", function (e) {
+          if (e.target.tagName === "INPUT" && e.target.value !== "") {
+            console.log(e.target.value);
+            navigator.clipboard.writeText(e.target.value);
+            notify("copied!");
+          }
+          if (
+            e.target.tagName === "LABEL" &&
+            e.target.getAttribute("name") === "copy"
+          ) {
+            navigator.clipboard.writeText(e.target.nextElementSibling.value);
+            notify("copied!");
+          }
+        });
+      };
+
+      let HashConfigList = [
+        { name: "sha1", algo: CryptoJS.SHA1 },
+        { name: "sha3", algo: CryptoJS.SHA3 },
+        { name: "sha256", algo: CryptoJS.SHA256 },
+        { name: "md5", algo: CryptoJS.MD5 },
+        { name: "sha384", algo: CryptoJS.SHA384 },
+        { name: "sha224", algo: CryptoJS.SHA224 },
+        { name: "sha512", algo: CryptoJS.SHA512 },
+        {
+          name: "base64",
+          algo: (x) =>
+            CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(x)),
+        },
+      ];
+
+      function findAlgoByName(name) {
+        let algos = HashConfigList.filter((h) => h.name === name);
+        if (algos) {
+          return algos[0]["algo"];
+        } else {
+          return null;
+        }
+      }
+
+      function compare(key) {
+        return function (a, b) {
+          let name1 = a[key].toUpperCase();
+          let name2 = b[key].toUpperCase();
+          return name1.localeCompare(name2);
+        };
+      }
+
+      function notify(message) {
+        let messageBox = document.querySelector("#info-box");
+        let messageBoxText = document.querySelector("#info-box-text");
+        if (!message) {
+          return;
+        }
+        if (messageBox.style.visibility === "visible") {
+          return;
+        }
+        messageBoxText.innerHTML = message;
+        messageBox.style.left =
+          (document.documentElement.clientWidth - messageBox.clientWidth) / 2 +
+          "px";
+        messageBox.style.top =
+          (document.documentElement.clientHeight - messageBox.clientHeight) /
+            2 +
+          "px";
+
+        messageBox.style.visibility = "visible";
+        let timer = setTimeout(() => {
+          messageBox.style.visibility = "hidden";
+          clearTimeout(timer);
+        }, 1000);
+      }
+      HashConfigList.sort(compare("name"));
+    </script>
+  </body>
+</html>

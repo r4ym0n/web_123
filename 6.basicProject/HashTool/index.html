@@ -53,7 +53,7 @@
       }
       .hash-content {
         margin-top: 5px;
-        width: 60rem;
+        width: calc(80% + 85px);
       }
 
       .info-box {
@@ -138,7 +138,7 @@
         const hashList = document.querySelector("#hash-list");
         textOrigin.addEventListener("input", function (e) {
           [...hashList.children].forEach(function (hashli) {
-            let input = hashli.firstElementChild.lastElementChild;
+            let input = hashli.getElementsByTagName('input')[0];
             let algo = findAlgoByName(input.dataset.name);
             input.value = algo(textOrigin.value).toString(CryptoJS.enc.Hex);
           });

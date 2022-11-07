@@ -1,0 +1,41 @@
+.mainPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.outline {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 1.5em;
+    min-height: 30vh;
+    padding: 3em 1em;
+    margin: auto;
+}
+
+.title {
+    letter-spacing: -0.025em;
+    font-size: 4rem;
+    font-weight: 800;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+.title span {
+    color: rgb(26, 115, 232);
+}
+
+.myphoto {
+    display: flex;
+    border: black 1px solid;
+    border-radius: 100%;
+    align-items: center;
+    width: 400px;
+    height: 400px;
+}
+.myphoto img {
+    margin: auto;
+}
+.titleItem {
+    flex-basis: 50%
+}

@@ -15,6 +15,15 @@
 
 元素自身的this 使用 bind 函数或者使用 箭头函数来进行直接的本级别的 this 传递。
 
+## REACT中的环境变量
+静态页面，所以变量只会在在编译时候生效
+
+```
+// 在环境变量中配置，使用 env 来进行变量的引用。
+{process.env.REACT_APP_SECRET_CODE}
+
+```
+- https://www.html.cn/create-react-app/docs/adding-custom-environment-variables/
 
 
 ## react 的表单
@@ -93,3 +102,7 @@ function App() {
 }
 ```
 
+## 拖拽上传组件
+react-dropzone
+
+https://react-dropzone.js.org/#src

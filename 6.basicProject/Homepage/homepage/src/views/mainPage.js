@@ -10,20 +10,50 @@ function MainPage(props) {
             Join <span>My Journey</span> Into The New Economy.
           </h1>
           <h2 class={style.Subtitle}>Keep up with Web3 and Crypto.</h2>
+          <div>
+            <input></input>
+            <button type="button" id="asd">
+              Search
+            </button>
+          </div>
         </div>
         <div className={style.myphoto}>
-            <img alt="a simple">
-            </img>
+          <img alt="a simple"></img>
         </div>
       </div>
-      
-    <CardPad>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        
-    </CardPad>
-      
+
+      <div class={style.itemsPanel}>
+        <div class={style.sectionTitle}>
+          <h2> Feture Count</h2>
+        </div>
+        <CardPad>
+          <Card></Card>
+          <Card></Card>
+          <Card></Card>
+        </CardPad>
+      </div>
+
+      <div class={style.itemsPanel}>
+        <div class={style.sectionTitle}>
+          <h2> Feture Count</h2>
+        </div>
+        <CardPad>
+          <Card></Card>
+          <Card></Card>
+          <Card></Card>
+        </CardPad>
+      </div>
+
+      <div class={style.itemsPanel}>
+        <div class={style.sectionTitle}>
+          <h2> Feture Count</h2>
+        </div>
+        <CardPad style={{background: "linear-gradient(141.34deg, rgba(94, 68, 255, 0.627) 20.76%, rgba(246, 185, 59, 0.627) 75.09%)"}}>
+          <Card></Card>
+          <Card></Card>
+          <Card></Card>
+        </CardPad>
+      </div>
     </div>
   );
 }

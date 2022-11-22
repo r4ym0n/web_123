@@ -39,3 +39,12 @@
 .titleItem {
     flex-basis: 50%
 }
+
+.itemsPanel {
+    display: flex;
+    flex-direction: column;
+}
+.sectionTitle {
+    align-self: center;
+    border-bottom: 1px blue solid;
+}

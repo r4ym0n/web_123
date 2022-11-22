@@ -4,8 +4,7 @@ function Card(props) {
 
 
     return (
-        <div className={style.Card}>
-            test
+        <div className={style.Card}>   
             <div className={style.content}>
                 <div className={style.labels}>
                     <span> web3</span>

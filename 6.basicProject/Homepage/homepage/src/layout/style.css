@@ -41,8 +41,9 @@
     font-size: large;
     color: grey;
 }
-.headerItem div {
-    padding: 40px;
+.headerItem li {
+    list-style-type: none;
+    padding: 50px;
 }
 
 .rightMenu {

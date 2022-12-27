@@ -1,0 +1,11 @@
+自定义Hook
+命名必须使用 Use开头，可以在其中使用 state 以及 effect
+
+UseMemo 实现函数只在某个状态改变时候才进行执行。
+
+useEffect 和 useMemo 区别
+useEffect是在DOM改变之后触发，useMemo在DOM渲染之前就触发
+useMemo是在DOM更新前触发的，就像官方所说的，类比生命周期就是[shouldComponentUpdate]
+useEffect可以帮助我们在DOM更新完成后执行某些副作用操作，如数据获取，设置订阅以及手动更改 React 组件中的 DOM 等
+不要在这个useMemo函数内部执行与渲染无关的操作，诸如副作用这类的操作属于 useEffect 的适用范畴，而不是 useMemo
+在useMemo中使用setState你会发现会产生死循环，并且会有警告，因为useMemo是在渲染中进行的，你在其中操作DOM后，又会导致触发memo

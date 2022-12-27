@@ -106,3 +106,9 @@ function App() {
 react-dropzone
 
 https://react-dropzone.js.org/#src
+
+
+
+
+
+topk(5, count({__name__=~"+*"}) by(__name__) )

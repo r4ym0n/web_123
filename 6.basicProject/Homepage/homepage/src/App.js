@@ -1,21 +1,19 @@
 import logo from "./logo.svg";
 import Layout from "./layout/layout";
-import Header from "./layout/header";
-import Footer from "./layout/footer";
 import MainPage from "./views/mainPage";
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./App.css";
 
 function App() {
   return (
     <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
 
     // <div className="App">
     //   <header className="App-header">
@@ -26,22 +24,18 @@ function App() {
 }
 
 function About() {
-  return     <Layout
-  header={<Header />}
-  mainpage={
-    <div>12312321</div>
-  }
-  footer={<Footer />}
-></Layout>;
+  return (
+    <Layout>
+      <div className="Main">12312321</div>
+    </Layout>
+  );
 }
 
-function Home (props) {
+function Home(props) {
   return (
-    <Layout
-    header={<Header />}
-    mainpage={<MainPage />}
-    footer={<Footer />}
-  ></Layout>
-  )
+    <Layout>
+      <MainPage className="Main" />
+    </Layout>
+  );
 }
 export default App;

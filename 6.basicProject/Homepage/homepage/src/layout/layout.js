@@ -1,13 +1,19 @@
 import "./style.css";
+import Header from "./header";
+import Footer from "./footer";
 
 function Layout(props) {
   return (
     <div className="layoutRoot">
-      <div className="header">{props.header}</div>
-      <div className="main">{props.mainpage}</div>
-      <div className="footer">{props.footer}</div>
+      <Header/>
+        {props.children}
+      <Footer/>
     </div>
   );
 }
 
 export default Layout;
+
+
+
+   
